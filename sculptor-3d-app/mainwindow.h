@@ -5,7 +5,7 @@
 #include <QActionGroup>
 
 enum{
-    sphere, voxel, box
+    sphere, voxel, box, ellipsoid, cVoxel, cSphere, cBox, cEllipsoid
 };
 
 #include <QMainWindow>
@@ -26,9 +26,9 @@ private:
     Ui::MainWindow *ui;
     int dimX, dimY, dimZ;
     int r, g, b;
-    int currentObject;
+    int figuraAtual;
     void updateColor();
-    Sculptor *e;
+    Sculptor *escultor;
     QActionGroup *actionGroup;
 
 public slots:
@@ -48,17 +48,31 @@ public slots:
 
     void updateAxis(int, int);
 
+    void apresentaDialogo();
+
 private slots:
 
     void save();
 
     void putVoxel();
 
-    void putSphere();
-
     void putBox();
 
+    void putSphere();
+
+    void putEllipsoid();
+
+    void cutVoxel();
+
+    void cutBox();
+
+    void cutSphere();
+
+    void cutEllipsoid();
+
     void set_Axis_z(int);
+
+    void limpar_voxel();
 
 };
 #endif // MAINWINDOW_H

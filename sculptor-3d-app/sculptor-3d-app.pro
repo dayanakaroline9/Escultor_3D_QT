@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     canva.cpp \
+    dialognewproject.cpp \
     main.cpp \
     mainwindow.cpp \
     sculptor.cpp
@@ -17,10 +18,12 @@ SOURCES += \
 HEADERS += \
     Voxel.h \
     canva.h \
+    dialognewproject.h \
     mainwindow.h \
     sculptor.h
 
 FORMS += \
+    dialognewproject.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -50,8 +50,8 @@ void Canva::paintEvent(QPaintEvent *e)
     }else{
         tamCel = heightCel;
     }
-    borderh = (widthScreen - nc*tamCel)/2;
-    borderv = (heightScreen - nl*tamCel)/2;
+    gridH = (widthScreen - nc*tamCel)/2;
+    gridV = (heightScreen - nl*tamCel)/2;
 
     p.setPen(pen);
     p.drawRect(rect());
@@ -60,8 +60,8 @@ void Canva::paintEvent(QPaintEvent *e)
         for(int j = 0; j < nc; j++){
             if(v[i][j].isOn == true){
                 p.save();
-                p.translate(j*tamCel+borderh+tamCel/2,
-                            i*tamCel+borderv+tamCel/2);
+                p.translate(j*tamCel+gridH+tamCel/2,
+                            i*tamCel+gridV+tamCel/2);
                 p.setPen(Qt::NoPen);
                 brush.setColor(QColor::fromRgb(v[i][j].r, v[i][j].g, v[i][j].b));
                 brush.setStyle(Qt::SolidPattern);
@@ -71,7 +71,7 @@ void Canva::paintEvent(QPaintEvent *e)
             }else{
                 brush.setColor(QColor(255,255,255,0));
                 p.setBrush(brush);
-                p.drawRect(j*tamCel+borderh,i*tamCel+borderv,tamCel, tamCel);
+                p.drawRect(j*tamCel+gridH,i*tamCel+gridV,tamCel, tamCel);
             }
         }
     }
@@ -87,28 +87,29 @@ void Canva::setTamanho(int _nl, int _nc)
 
 void Canva::mousePressEvent(QMouseEvent *event)
 {
-    int posh, posv;
+    int h, v;
     QRect ret;
     ret = rect();
     pressed = true;
-    ret.adjust(borderh, borderv, -borderh, -borderv);
+    ret.adjust(gridH, gridV, -gridH, -gridV);
     if(ret.contains(event->pos())){
-        posh = (event->pos().x()-borderh)*nc/ret.width();
-        posv = (event->pos().y()-borderv)*nl/ret.height();
-        emit enviaPosicao(posh, posv);
+        h = (event->pos().x()-gridH)*nc/ret.width();
+        v = (event->pos().y()-gridV)*nl/ret.height();
+        emit enviaPosicao(h, v);
     }
+
 }
 
 void Canva::mouseMoveEvent(QMouseEvent *event)
 {
-    int posh, posv;
+    int h, v;
     QRect ret;
     ret = rect();
-    ret.adjust(borderh, borderv, -borderh, -borderv);
+    ret.adjust(gridH, gridV, -gridH, -gridV);
     if(ret.contains(event->pos())&& pressed == true){
-        posh = (event->pos().x()-borderh)*nc/ret.width();
-        posv = (event->pos().y()-borderv)*nl/ret.height();
-        emit enviaPosicao(posh, posv);
+        h = (event->pos().x()-gridH)*nc/ret.width();
+        v = (event->pos().y()-gridV)*nl/ret.height();
+        emit enviaPosicao(h, v);
     }
 
 }

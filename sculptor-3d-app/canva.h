@@ -15,7 +15,7 @@ class Canva : public QWidget
 private:
     int nl, nc;
     vector <vector<Voxel>> v;
-    int borderv, borderh;
+    int gridV, gridH;
     int tamCel;
     int widthScreen, heightScreen;
     int widthCel, heightCel;

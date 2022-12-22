@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>802</width>
-    <height>787</height>
+    <width>930</width>
+    <height>792</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,6 +63,9 @@
          </item>
          <item>
           <widget class="QSlider" name="horizontalSlider_BX">
+           <property name="minimum">
+            <number>0</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -84,6 +87,9 @@
          </item>
          <item>
           <widget class="QSlider" name="horizontalSlider_BY">
+           <property name="minimum">
+            <number>0</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -105,6 +111,9 @@
          </item>
          <item>
           <widget class="QSlider" name="horizontalSlider_BZ">
+           <property name="minimum">
+            <number>0</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -161,7 +170,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QSlider" name="horizontalSlider_2">
+          <widget class="QSlider" name="horizontalSlider_RY">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -420,7 +429,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>802</width>
+     <width>930</width>
      <height>32</height>
     </rect>
    </property>
@@ -429,6 +438,7 @@
      <string>File</string>
     </property>
     <addaction name="actionNovo_Projeto"/>
+    <addaction name="actionSalvar"/>
     <addaction name="actionSair"/>
    </widget>
    <addaction name="menuFile"/>
@@ -447,9 +457,15 @@
    <addaction name="separator"/>
    <addaction name="actionNovo_Projeto"/>
    <addaction name="actionSalvar"/>
+   <addaction name="actionApagar_Desenho"/>
    <addaction name="actionputVoxel"/>
    <addaction name="actionputSphere"/>
    <addaction name="actionputBox"/>
+   <addaction name="actionputEllipsoid"/>
+   <addaction name="actioncutVoxel"/>
+   <addaction name="actioncutSphere"/>
+   <addaction name="actioncutBox"/>
+   <addaction name="actioncutEllipsoid"/>
   </widget>
   <action name="actionNovo_Projeto">
    <property name="text">
@@ -479,6 +495,36 @@
   <action name="actionputBox">
    <property name="text">
     <string>putBox</string>
+   </property>
+  </action>
+  <action name="actionApagar_Desenho">
+   <property name="text">
+    <string>Apagar Desenho</string>
+   </property>
+  </action>
+  <action name="actioncutVoxel">
+   <property name="text">
+    <string>cutVoxel</string>
+   </property>
+  </action>
+  <action name="actioncutSphere">
+   <property name="text">
+    <string>cutSphere</string>
+   </property>
+  </action>
+  <action name="actioncutBox">
+   <property name="text">
+    <string>cutBox</string>
+   </property>
+  </action>
+  <action name="actionputEllipsoid">
+   <property name="text">
+    <string>putEllipsoid</string>
+   </property>
+  </action>
+  <action name="actioncutEllipsoid">
+   <property name="text">
+    <string>cutEllipsoid</string>
    </property>
   </action>
  </widget>
@@ -560,7 +606,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>horizontalSlider_2</sender>
+   <sender>horizontalSlider_RY</sender>
    <signal>valueChanged(int)</signal>
    <receiver>lcdNumber_3</receiver>
    <slot>display(int)</slot>
@@ -843,7 +889,103 @@
     </hint>
     <hint type="destinationlabel">
      <x>400</x>
-     <y>393</y>
+     <y>378</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionApagar_Desenho</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>limpar_voxel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>400</x>
+     <y>378</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionputEllipsoid</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>putEllipsoid()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actioncutVoxel</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cutVoxel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actioncutSphere</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cutSphere()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actioncutBox</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cutBox()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>395</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actioncutEllipsoid</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cutEllipsoid()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>464</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>464</x>
+     <y>395</y>
     </hint>
    </hints>
   </connection>
@@ -860,5 +1002,11 @@
   <slot>updateAxis(int,int)</slot>
   <slot>set_Axis_z(int)</slot>
   <slot>putBox()</slot>
+  <slot>limpar_voxel()</slot>
+  <slot>putEllipsoid()</slot>
+  <slot>cutVoxel()</slot>
+  <slot>cutSphere()</slot>
+  <slot>cutBox()</slot>
+  <slot>cutEllipsoid()</slot>
  </slots>
 </ui>
