@@ -27,7 +27,7 @@ Canva::Canva(QWidget *parent)
     }else{
         tamCel = heightCel;
     }
-    setTamanho(nl,nc);
+    setSize(nl,nc);
 }
 
 void Canva::paintEvent(QPaintEvent *e)
@@ -78,7 +78,7 @@ void Canva::paintEvent(QPaintEvent *e)
 
 }
 
-void Canva::setTamanho(int _nl, int _nc)
+void Canva::setSize(int _nl, int _nc)
 {
     nl = _nl;
     nc = _nc;

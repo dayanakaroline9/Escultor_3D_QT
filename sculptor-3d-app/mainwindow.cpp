@@ -23,24 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     escultor = new Sculptor(dimX,dimY,dimZ);
     escultor->limparVoxel();
 
-    ui->horizontalSlider_z->setMaximum(dimZ-1);
-
-    ui->horizontalSlider_BX->setMinimum(1);
-    ui->horizontalSlider_BY->setMinimum(1);
-    ui->horizontalSlider_BZ->setMinimum(1);
-    ui->horizontalSlider_BX->setMaximum(dimZ);
-    ui->horizontalSlider_BY->setMaximum(dimZ);
-    ui->horizontalSlider_BZ->setMaximum(dimZ);
-
-    ui->horizontalSlider_RX->setMinimum(1);
-    ui->horizontalSlider_RY->setMinimum(1);
-    ui->horizontalSlider_RZ->setMinimum(1);
-    ui->horizontalSlider_RX->setMaximum(dimZ);
-    ui->horizontalSlider_RY->setMaximum(dimZ);
-    ui->horizontalSlider_RZ->setMaximum(dimZ);
-
-    ui->sliderRadiusSphere->setMinimum(1);
-    ui->sliderRadiusSphere->setMaximum(dimZ-1);
+    set_sliders_numbers();
 
     ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
 
@@ -90,72 +73,70 @@ void MainWindow::draw3d(int hClick, int vClick)
 {
     int x0,x1,y0,y1,z0,z1;
     switch(figuraAtual){
-        case(sphere):
-            escultor->putSphere(vClick,hClick,ui->horizontalSlider_z->value(),ui->sliderRadiusSphere->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
-        case(voxel):
-            escultor->putVoxel(vClick,hClick,ui->horizontalSlider_z->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
-        case(box):
-            x0=vClick - ui->horizontalSlider_BX->value()/2;
-            x1=vClick + ui->horizontalSlider_BX->value()/2;
+    case(sphere):
+        escultor->putSphere(vClick,hClick,ui->horizontalSlider_z->value(),ui->sliderRadiusSphere->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
+    case(voxel):
+        escultor->putVoxel(vClick,hClick,ui->horizontalSlider_z->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
+    case(box):
+        x0=vClick - ui->horizontalSlider_BX->value()/2;
+        x1=vClick + ui->horizontalSlider_BX->value()/2;
 
-            y0=hClick - ui->horizontalSlider_BY->value()/2;
-            y1=hClick + ui->horizontalSlider_BY->value()/2;
+        y0=hClick - ui->horizontalSlider_BY->value()/2;
+        y1=hClick + ui->horizontalSlider_BY->value()/2;
 
-            z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
-            z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
+        z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
+        z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
 
-            escultor->putBox(x0,x1,y0,y1,z0,z1);
+        escultor->putBox(x0,x1,y0,y1,z0,z1);
 
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
-        case(ellipsoid):
-            escultor->putEllipsoid(vClick,hClick,ui->horizontalSlider_z->value(),ui->horizontalSlider_RX->value(),ui->horizontalSlider_RY->value(),ui->horizontalSlider_RZ->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
+    case(ellipsoid):
+        escultor->putEllipsoid(vClick,hClick,ui->horizontalSlider_z->value(),ui->horizontalSlider_RX->value(),ui->horizontalSlider_RY->value(),ui->horizontalSlider_RZ->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
 
-        case(cVoxel):
-              escultor->cutVoxel(vClick,hClick,ui->horizontalSlider_z->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
+    case(cVoxel):
+        escultor->cutVoxel(vClick,hClick,ui->horizontalSlider_z->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
 
+    case(cSphere):
 
+        escultor->cutSphere(vClick,hClick,ui->horizontalSlider_z->value(),ui->sliderRadiusSphere->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
 
-        case(cSphere):
+    case(cBox):
+        x0=vClick - ui->horizontalSlider_BX->value()/2;
+        x1=vClick + ui->horizontalSlider_BX->value()/2;
 
-            escultor->cutSphere(vClick,hClick,ui->horizontalSlider_z->value(),ui->sliderRadiusSphere->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
+        y0=hClick - ui->horizontalSlider_BY->value()/2;
+        y1=hClick + ui->horizontalSlider_BY->value()/2;
 
-        case(cBox):
-            x0=vClick - ui->horizontalSlider_BX->value()/2;
-            x1=vClick + ui->horizontalSlider_BX->value()/2;
+        z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
+        z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
 
-            y0=hClick - ui->horizontalSlider_BY->value()/2;
-            y1=hClick + ui->horizontalSlider_BY->value()/2;
+        escultor->cutBox(x0,x1,y0,y1,z0,z1);
 
-            z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
-            z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
 
-            escultor->cutBox(x0,x1,y0,y1,z0,z1);
-
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
-
-        case(cEllipsoid):
-            escultor->cutEllipsoid(vClick,hClick,ui->horizontalSlider_z->value(),ui->horizontalSlider_RX->value(),ui->horizontalSlider_RY->value(),ui->horizontalSlider_RZ->value());
-            ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
-            break;
+    case(cEllipsoid):
+        escultor->cutEllipsoid(vClick,hClick,ui->horizontalSlider_z->value(),ui->horizontalSlider_RX->value(),ui->horizontalSlider_RY->value(),ui->horizontalSlider_RZ->value());
+        ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+        break;
     }
 }
 
 void MainWindow::updateAxis(int hClick, int vClick)
 {
-        ui->lcdNumber_x->display(vClick);
-        ui->lcdNumber_y->display(hClick);
+    ui->lcdNumber_x->display(vClick);
+    ui->lcdNumber_y->display(hClick);
 }
 
 void MainWindow::apresentaDialogo()
@@ -167,9 +148,11 @@ void MainWindow::apresentaDialogo()
         dimZ = d.get_z_dialog().toInt();
 
         if(escultor != NULL)
-           delete escultor;
+            delete escultor;
         escultor = new Sculptor(dimX,dimY,dimZ);
-        ui->horizontalSlider_z->setMaximum(dimZ-1);
+
+        set_sliders_numbers();
+
         ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
 
 
@@ -183,7 +166,7 @@ void MainWindow::save()
     QString selectedFilter;
     QString filename = dialog.getSaveFileName(this,tr("Salvar"),
                                               QDir::currentPath(),
-                                              tr("Arquivo OFF(*.off);;Arquivo VECT(*.vect)"),
+                                              tr("Arquivo OFF(*.off)"),
                                               &selectedFilter);
     if(filename.isNull()){
         return;
@@ -243,6 +226,28 @@ void MainWindow::limpar_voxel()
 {
     escultor->limparVoxel();
     ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
+}
+
+void MainWindow::set_sliders_numbers()
+{
+    ui->horizontalSlider_z->setMaximum(dimZ-1);
+
+    ui->horizontalSlider_BX->setMinimum(1);
+    ui->horizontalSlider_BY->setMinimum(1);
+    ui->horizontalSlider_BZ->setMinimum(1);
+    ui->horizontalSlider_BX->setMaximum(dimZ);
+    ui->horizontalSlider_BY->setMaximum(dimZ);
+    ui->horizontalSlider_BZ->setMaximum(dimZ);
+
+    ui->horizontalSlider_RX->setMinimum(1);
+    ui->horizontalSlider_RY->setMinimum(1);
+    ui->horizontalSlider_RZ->setMinimum(1);
+    ui->horizontalSlider_RX->setMaximum(dimZ);
+    ui->horizontalSlider_RY->setMaximum(dimZ);
+    ui->horizontalSlider_RZ->setMaximum(dimZ);
+
+    ui->sliderRadiusSphere->setMinimum(1);
+    ui->sliderRadiusSphere->setMaximum(dimZ-1);
 }
 
 void MainWindow::updateColor()
