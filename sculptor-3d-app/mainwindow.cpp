@@ -88,6 +88,7 @@ void MainWindow::setBlue(int _b)
 
 void MainWindow::draw3d(int hClick, int vClick)
 {
+    int x0,x1,y0,y1,z0,z1;
     switch(figuraAtual){
         case(sphere):
             escultor->putSphere(vClick,hClick,ui->horizontalSlider_z->value(),ui->sliderRadiusSphere->value());
@@ -98,14 +99,14 @@ void MainWindow::draw3d(int hClick, int vClick)
             ui->widget->imprimirFigura(escultor->getPlano(ui->horizontalSlider_z->value()));
             break;
         case(box):
-            int x0=vClick - ui->horizontalSlider_BX->value()/2;
-            int x1=vClick + ui->horizontalSlider_BX->value()/2;
+            x0=vClick - ui->horizontalSlider_BX->value()/2;
+            x1=vClick + ui->horizontalSlider_BX->value()/2;
 
-            int y0=hClick - ui->horizontalSlider_BY->value()/2;
-            int y1=hClick + ui->horizontalSlider_BY->value()/2;
+            y0=hClick - ui->horizontalSlider_BY->value()/2;
+            y1=hClick + ui->horizontalSlider_BY->value()/2;
 
-            int z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
-            int z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
+            z0=ui->horizontalSlider_z->value()-ui->horizontalSlider_BZ->value()/2;
+            z1=ui->horizontalSlider_z->value()+ui->horizontalSlider_BZ->value()/2;
 
             escultor->putBox(x0,x1,y0,y1,z0,z1);
 

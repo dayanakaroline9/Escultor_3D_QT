@@ -468,61 +468,109 @@
    <addaction name="actioncutEllipsoid"/>
   </widget>
   <action name="actionNovo_Projeto">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/add.png</normaloff>:/icones/add.png</iconset>
+   </property>
    <property name="text">
     <string>Novo Projeto</string>
    </property>
   </action>
   <action name="actionSair">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/sair.png</normaloff>:/icones/sair.png</iconset>
+   </property>
    <property name="text">
     <string>Sair</string>
    </property>
   </action>
   <action name="actionputVoxel">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/ponto.png</normaloff>:/icones/ponto.png</iconset>
+   </property>
    <property name="text">
     <string>putVoxel</string>
    </property>
   </action>
   <action name="actionputSphere">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/esfera.png</normaloff>:/icones/esfera.png</iconset>
+   </property>
    <property name="text">
     <string>putSphere</string>
    </property>
   </action>
   <action name="actionSalvar">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/baixar.png</normaloff>:/icones/baixar.png</iconset>
+   </property>
    <property name="text">
     <string>Salvar</string>
    </property>
   </action>
   <action name="actionputBox">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/caixa.png</normaloff>:/icones/caixa.png</iconset>
+   </property>
    <property name="text">
     <string>putBox</string>
    </property>
   </action>
   <action name="actionApagar_Desenho">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/apagar.png</normaloff>:/icones/apagar.png</iconset>
+   </property>
    <property name="text">
     <string>Apagar Desenho</string>
    </property>
   </action>
   <action name="actioncutVoxel">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/xponto.png</normaloff>:/icones/xponto.png</iconset>
+   </property>
    <property name="text">
     <string>cutVoxel</string>
    </property>
   </action>
   <action name="actioncutSphere">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/Xesfera.png</normaloff>:/icones/Xesfera.png</iconset>
+   </property>
    <property name="text">
     <string>cutSphere</string>
    </property>
   </action>
   <action name="actioncutBox">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/xcaixa.png</normaloff>:/icones/xcaixa.png</iconset>
+   </property>
    <property name="text">
     <string>cutBox</string>
    </property>
   </action>
   <action name="actionputEllipsoid">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/elipse.png</normaloff>:/icones/elipse.png</iconset>
+   </property>
    <property name="text">
     <string>putEllipsoid</string>
    </property>
   </action>
   <action name="actioncutEllipsoid">
+   <property name="icon">
+    <iconset resource="recursos.qrc">
+     <normaloff>:/icones/Xelipse.png</normaloff>:/icones/Xelipse.png</iconset>
+   </property>
    <property name="text">
     <string>cutEllipsoid</string>
    </property>
@@ -539,7 +587,9 @@
    </slots>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="recursos.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>horizontalSlider_BX</sender>
@@ -980,8 +1030,8 @@
    <slot>cutEllipsoid()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>464</x>
-     <y>395</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>464</x>
